@@ -1,7 +1,7 @@
 package userfunction
 
 import (
-	ofctx "github.com/tpiperatgod/offf-go/openfunction-context"
+	ofctx "github.com/OpenFunction/functions-framework-go/openfunction-context"
 	"log"
 )
 

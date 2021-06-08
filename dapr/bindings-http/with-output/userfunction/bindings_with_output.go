@@ -2,7 +2,7 @@ package userfunction
 
 import (
 	"bytes"
-	ofctx "github.com/tpiperatgod/offf-go/openfunction-context"
+	ofctx "github.com/OpenFunction/functions-framework-go/openfunction-context"
 	"io/ioutil"
 	"log"
 	"net/http"

@@ -1,8 +1,8 @@
 package userfunction
 
 import (
+	ofctx "github.com/OpenFunction/functions-framework-go/openfunction-context"
 	"github.com/dapr/go-sdk/service/common"
-	ofctx "github.com/tpiperatgod/offf-go/openfunction-context"
 	"log"
 )
 
