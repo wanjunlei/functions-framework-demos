@@ -110,7 +110,12 @@ func publish(ctx *ofctx.OpenFunctionContext, index int, resultCh chan<- bool, st
 				resultCh <- true
 				continue
 			}
-			resultCh <- ctx.SendTo(d, pubSubName) == nil
+			if err := ctx.SendTo(d, pubSubName); err != nil {
+				logger.Printf("send error, %v", err)
+				resultCh <- false
+			} else {
+				resultCh <- true
+			}
 		}
 	}
 }
@@ -119,7 +124,7 @@ func getEventData(index int) []byte {
 	r := requestContent{
 		ID:   fmt.Sprintf("p%d-%s", index, uuid.New().String()),
 		Data: []byte(getData(256)),
-		Time: time.Now().UTC().Unix(),
+		Time: time.Now().String(),
 	}
 
 	// hash the entire message
@@ -146,7 +151,7 @@ type requestContent struct {
 	ID   string `json:"id"`
 	Data []byte `json:"data"`
 	Sha  string `json:"sha"`
-	Time int64  `json:"time"`
+	Time string `json:"time"`
 }
 
 func getEnvVar(key, fallbackValue string) string {
